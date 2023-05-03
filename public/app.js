@@ -1,3 +1,19 @@
+const me = {
+    name: 'kaloyan',
+    age: 24,
+    speak(text) {
+        console.log(text);
+    },
+    spend(amount) {
+        console.log('I spent', amount);
+        return amount;
+    },
+};
+const greetPerson = (person) => {
+    console.log('hello', person.name);
+};
+greetPerson(me);
+console.log(me);
 import { Invoice } from './classes/invoice.js';
 // classes
 const invOne = new Invoice('mario', 'work on the mario website', 250);
