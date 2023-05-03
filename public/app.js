@@ -1,20 +1,5 @@
-"use strict";
+import { Invoice } from './classes/invoice.js';
 // classes
-class Invoice {
-    // private client: string;
-    // readonly details: string;
-    // public amount: number;
-    constructor(
-    // Only work if has access modifiers
-    client, details, amount) {
-        this.client = client;
-        this.details = details;
-        this.amount = amount;
-    }
-    format() {
-        return `${this.client} owes $${this.amount} for ${this.details}`;
-    }
-}
 const invOne = new Invoice('mario', 'work on the mario website', 250);
 const invTwo = new Invoice('luigi', 'work on the luigi website', 300);
 let invoices = [];
