@@ -1,14 +1,15 @@
 // classes
 class Invoice {
-  client: string;
-  details: string;
-  amount: number;
+  // private client: string;
+  // readonly details: string;
+  // public amount: number;
 
-  constructor(c: string, d: string, a: number) {
-    this.client = c;
-    this.details = d;
-    this.amount = a;
-  }
+  constructor(
+    // Only work if has access modifiers
+    readonly client: string,
+    private details: string,
+    public amount: number
+  ) {}
   format() {
     return `${this.client} owes $${this.amount} for ${this.details}`;
   }
@@ -20,8 +21,17 @@ const invTwo = new Invoice('luigi', 'work on the luigi website', 300);
 let invoices: Invoice[] = [];
 invoices.push(invOne, invTwo);
 
-invOne.client = 'Wario';
-invTwo.amount = 400;
+invoices.forEach((inv) => {
+  console.log(inv.amount, inv.format());
+});
+
+// Print to DOM in li elements the invoices
+const ul = document.querySelector('ul')!;
+invoices.forEach((inv) => {
+  const li = document.createElement('li');
+  li.innerText = inv.format();
+  ul.append(li);
+});
 
 const form = document.querySelector('.new-item-form') as HTMLFormElement;
 
@@ -35,4 +45,6 @@ form.addEventListener('submit', (e: Event) => {
   e.preventDefault();
 
   console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
+  const invoice = new Invoice(type.value, details.value, amount.valueAsNumber);
+  console.log(invoice.format());
 });
