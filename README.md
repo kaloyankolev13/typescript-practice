@@ -1,6 +1,6 @@
 # typescript-practice
 
-###Modules
+##Modules
 `"module": "ES2015" /* Specify what module code is generated. */,`
 Neet to change or `export` is not usable
 
