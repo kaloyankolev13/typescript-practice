@@ -25,7 +25,7 @@ greetPerson(me);
 
 console.log(me);
 
-import { Invoice } from './classes/invoice.js';
+import { Invoice } from './classes/Invoice.js';
 
 // classes
 

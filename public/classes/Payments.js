@@ -1,12 +1,12 @@
 export class Invoice {
     constructor(
     // Only work if has access modifiers
-    client, details, amount) {
-        this.client = client;
+    recipient, details, amount) {
+        this.recipient = recipient;
         this.details = details;
         this.amount = amount;
     }
     format() {
-        return `${this.client} owes $${this.amount} for ${this.details}`;
+        return `${this.recipient} owes $${this.amount} for ${this.details}`;
     }
 }
