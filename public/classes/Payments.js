@@ -1,4 +1,4 @@
-export class Invoice {
+export class Payments {
     constructor(
     // Only work if has access modifiers
     recipient, details, amount) {

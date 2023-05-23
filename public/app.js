@@ -1,21 +1,10 @@
-const me = {
-    name: 'kaloyan',
-    age: 24,
-    speak(text) {
-        console.log(text);
-    },
-    spend(amount) {
-        console.log('I spent', amount);
-        return amount;
-    },
-};
-const greetPerson = (person) => {
-    console.log('hello', person.name);
-};
-greetPerson(me);
-console.log(me);
 import { Invoice } from './classes/Invoice.js';
-// classes
+import { Payments } from './classes/Payments.js';
+let docOne;
+let docTwo;
+docOne = new Invoice('yoshi', 'web work', 250);
+docTwo = new Payments('mario', 'plumbing work', 200);
+let docs = [];
 const invOne = new Invoice('mario', 'work on the mario website', 250);
 const invTwo = new Invoice('luigi', 'work on the luigi website', 300);
 let invoices = [];
@@ -30,6 +19,7 @@ invoices.forEach((inv) => {
     li.innerText = inv.format();
     ul.append(li);
 });
+// function for creating li elements
 const form = document.querySelector('.new-item-form');
 // inputs
 const type = document.querySelector('#type');
@@ -38,7 +28,12 @@ const details = document.querySelector('#details');
 const amount = document.querySelector('#amount');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
-    const invoice = new Invoice(type.value, details.value, amount.valueAsNumber);
-    console.log(invoice.format());
+    let doc;
+    if (type.value === 'invoice') {
+        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+    }
+    else {
+        doc = new Payments(tofrom.value, details.value, amount.valueAsNumber);
+    }
+    console.log(doc);
 });

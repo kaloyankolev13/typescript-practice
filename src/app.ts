@@ -1,33 +1,14 @@
-interface IsPerson {
-  name: string;
-  age: number;
-  speak(a: string): void;
-  spend(a: number): number;
-}
-
-const me: IsPerson = {
-  name: 'kaloyan',
-  age: 24,
-  speak(text: string): void {
-    console.log(text);
-  },
-  spend(amount: number): number {
-    console.log('I spent', amount);
-    return amount;
-  },
-};
-
-const greetPerson = (person: IsPerson) => {
-  console.log('hello', person.name);
-};
-
-greetPerson(me);
-
-console.log(me);
-
 import { Invoice } from './classes/Invoice.js';
+import { Payments } from './classes/Payments.js';
+import { HasFormatter } from './interfaces/HasFormatter.js';
 
-// classes
+let docOne: HasFormatter;
+let docTwo: HasFormatter;
+
+docOne = new Invoice('yoshi', 'web work', 250);
+docTwo = new Payments('mario', 'plumbing work', 200);
+
+let docs: HasFormatter[] = [];
 
 const invOne = new Invoice('mario', 'work on the mario website', 250);
 const invTwo = new Invoice('luigi', 'work on the luigi website', 300);
@@ -47,6 +28,8 @@ invoices.forEach((inv) => {
   ul.append(li);
 });
 
+// function for creating li elements
+
 const form = document.querySelector('.new-item-form') as HTMLFormElement;
 
 // inputs
@@ -58,7 +41,11 @@ const amount = document.querySelector('#amount') as HTMLInputElement;
 form.addEventListener('submit', (e: Event) => {
   e.preventDefault();
 
-  console.log(type.value, tofrom.value, details.value, amount.valueAsNumber);
-  const invoice = new Invoice(type.value, details.value, amount.valueAsNumber);
-  console.log(invoice.format());
+  let doc: HasFormatter;
+  if (type.value === 'invoice') {
+    doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+  } else {
+    doc = new Payments(tofrom.value, details.value, amount.valueAsNumber);
+  }
+  console.log(doc);
 });
