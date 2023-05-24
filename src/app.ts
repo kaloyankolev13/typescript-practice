@@ -30,37 +30,26 @@ const list = new ListTemplate(ul);
 
 form.addEventListener('submit', (e: Event) => {
   e.preventDefault();
+  let values: [string, string, number];
+  values = [tofrom.value, details.value, amount.valueAsNumber];
 
   let doc: HasFormatter;
   if (type.value === 'invoice') {
-    doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+    doc = new Invoice(...values);
   } else {
     doc = new Payments(tofrom.value, details.value, amount.valueAsNumber);
   }
   list.render(doc, type.value, 'end');
 });
 
-enum ResourceType {
-  BOOK,
-  AUTHOR,
-  FILM,
-  DIRECTOR,
-  PERSON,
-}
-interface Resource<T> {
-  uid: number;
-  resourceName: ResourceType;
-  data: T;
-}
+let arr = ['ryu', 25, true];
+arr[0] = false;
+arr[1] = 'yoshi';
+arr = [30, false, 'yoshi'];
 
-const docThreeUid: Resource<object> = {
-  uid: 1,
-  resourceName: ResourceType.BOOK,
-  data: { name: 'shaun' },
-};
+let tup: [string, number, boolean] = ['ryu', 25, true];
+tup[0] = 'ken';
+tup[1] = 30;
 
-const docFourUid: Resource<string[]> = {
-  uid: 2,
-  resourceName: ResourceType.PERSON,
-  data: ['bread', 'milk', 'toilet roll'],
-};
+let student: [string, number];
+student = ['chun-li', 2234234];
